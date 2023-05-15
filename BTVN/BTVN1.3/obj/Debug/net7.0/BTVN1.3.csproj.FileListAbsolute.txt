@@ -1,0 +1,15 @@
+D:\C#\BTVN\BTVN1.3\bin\Debug\net7.0\BTVN1.3.exe
+D:\C#\BTVN\BTVN1.3\bin\Debug\net7.0\BTVN1.3.deps.json
+D:\C#\BTVN\BTVN1.3\bin\Debug\net7.0\BTVN1.3.runtimeconfig.json
+D:\C#\BTVN\BTVN1.3\bin\Debug\net7.0\BTVN1.3.dll
+D:\C#\BTVN\BTVN1.3\bin\Debug\net7.0\BTVN1.3.pdb
+D:\C#\BTVN\BTVN1.3\obj\Debug\net7.0\BTVN1.3.csproj.AssemblyReference.cache
+D:\C#\BTVN\BTVN1.3\obj\Debug\net7.0\BTVN1.3.GeneratedMSBuildEditorConfig.editorconfig
+D:\C#\BTVN\BTVN1.3\obj\Debug\net7.0\BTVN1.3.AssemblyInfoInputs.cache
+D:\C#\BTVN\BTVN1.3\obj\Debug\net7.0\BTVN1.3.AssemblyInfo.cs
+D:\C#\BTVN\BTVN1.3\obj\Debug\net7.0\BTVN1.3.csproj.CoreCompileInputs.cache
+D:\C#\BTVN\BTVN1.3\obj\Debug\net7.0\BTVN1.3.dll
+D:\C#\BTVN\BTVN1.3\obj\Debug\net7.0\refint\BTVN1.3.dll
+D:\C#\BTVN\BTVN1.3\obj\Debug\net7.0\BTVN1.3.pdb
+D:\C#\BTVN\BTVN1.3\obj\Debug\net7.0\BTVN1.3.genruntimeconfig.cache
+D:\C#\BTVN\BTVN1.3\obj\Debug\net7.0\ref\BTVN1.3.dll
