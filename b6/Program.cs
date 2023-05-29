@@ -22,12 +22,12 @@ namespace CGO_ThucHanh1
         bool gameOver, reset, isprinted, horizontal, vertical;
         string dir, pre_dir;
         #endregion
-        //Hiển thị màn hình khi bắt đầu
+
         void ShowBanner()
         {
             Console.SetWindowSize(width, height + panel);
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.CursorVisible = false; //tắt con trỏ nháy nháy
+            Console.CursorVisible = false; 
             Console.WriteLine("===SNAKE GAME===");
             Console.WriteLine("Press any key to play");
             Console.WriteLine("Tips: - Press P key to PAUSE game");
@@ -44,15 +44,14 @@ namespace CGO_ThucHanh1
         //Cài đặt thông số ban đầu
         void Setup()
         {
-            dir = "RIGHT"; pre_dir = "";    //bước đi đầu tiên qua phải 
+            dir = "RIGHT"; pre_dir = "";  
             score = 0; nTail = 0;
             gameOver = reset = isprinted = false;
-            headX = width/2; //ko vuot qua width (vi tri bat dau Ran)
-            headY = height/2; //ko vuot qua height(vi tri bat dau Ran)
+            headX = width/2; 
+            headY = height/2; 
             randonQua();
         }
         
-        //Sinh ngẫu nhiên vị trí quả
         void randonQua() {
             fruitX = rand.Next(1, width - 1);
             fruitY = rand.Next(1, height - 1);
@@ -69,7 +68,7 @@ namespace CGO_ThucHanh1
                 Console.WriteLine("Press Q key to QUIT game"); 
                 Render();
                 if (reset) break;
-                //DUng man hinh 1s
+
                 if(score <= 5) Thread.Sleep(60);
                 else if(score <= 10) Thread.Sleep(40);
                 else if(score <=20) Thread.Sleep(30);
@@ -79,14 +78,13 @@ namespace CGO_ThucHanh1
             if (gameOver) Lose();
         }
 
-        //Điều khiển phím
+
         void CheckInput() {
             while (Console.KeyAvailable)
             {
-                //Cho bam phim bat ky
+
                 keypress = Console.ReadKey(true);
-                //dir -> pre_dir
-                pre_dir = dir;  //luu lai huong di truoc do
+                pre_dir = dir;
                 switch (keypress.Key)
                 {
                     case ConsoleKey.Q: Environment.Exit(0); break;
@@ -100,11 +98,10 @@ namespace CGO_ThucHanh1
         
         }
 
-        //Kiểm tra điều hướng
         void Logic() {
-            int preX = TailX[0], preY = TailY[0]; // (x,y)
+            int preX = TailX[0], preY = TailY[0];
             int tempX, tempY;
-            //0 1 2 3 4 => Con rắn ăn thêm quà            //x 0 1 2 3 4
+
             if(dir != "STOP")
             {
                 TailX[0] = headX; TailY[0] = headY;
@@ -138,28 +135,25 @@ namespace CGO_ThucHanh1
                                 Environment.Exit(0);
                             if(keypress.Key == ConsoleKey.R)
                             {
-                                reset = true; break; //choi lai game
+                                reset = true; break; 
                             }
                             if (keypress.Key == ConsoleKey.P)
                                 Console.Clear();
-                                break;  //choi tiep game
+                                break;  
                         }
                     }
                     dir = pre_dir; break;
             }
-            //kiem tra va cham bien (le trai, phai)
+
             if (headX <= 0 || headX >= width - 1 ||
                 headY <= 0 || headY >= height - 1) gameOver = true;
             else gameOver = false;
-            //kiem tra an qua
             if(headX == fruitX && headY == fruitY)
             {
                 score += fruitPoint; 
                 if(fruitPoint == 1) nTail++;
                 else nTail += 2;
-                    //tinh diem khi an qua
                 randonQua();
-                    //random diem qua moi
             }
 
             if (((dir == "LEFT" && pre_dir != "UP") && (dir == "LEFT" && pre_dir != "DOWN")) ||
@@ -172,31 +166,29 @@ namespace CGO_ThucHanh1
                 vertical = true;
             else vertical = false;
 
-            //kiem tra cai dau va cham than con ran
             for(int i=1; i < nTail; i++)
             {
                 if(headX == TailX[i] && headY == TailY[i])
                 {
-                    if (horizontal || vertical) gameOver = false; //quay dau 180 độ [bẫy lỗi quay đầu]
+                    if (horizontal || vertical) gameOver = false;
                     else gameOver = true;
                 }
-                if (fruitX == TailX[i] && fruitY == TailY[i]) //quà trùng thân con rắn cho random lại
+                if (fruitX == TailX[i] && fruitY == TailY[i])
                     randonQua();
             }
         }
 
-        //Hiển thị màn hình
         void Render() {
             Console.SetCursorPosition(0, 0);
             for(int i=0; i< height; i++)
             {
                 for(int j=0; j< width; j++)
                 {
-                    if (i == 0 || i == height - 1)   //viền khung trên và dưới
+                    if (i == 0 || i == height - 1)
                         Console.Write("-");
-                    else if(j==0 || j == width - 1) //viền khung trái và phải
+                    else if(j==0 || j == width - 1)
                         Console.Write("|");
-                    else if (j == fruitX && i == fruitY) //hộp quả 
+                    else if (j == fruitX && i == fruitY)
                         {
                             switch(fruitPoint) {
                                 case 1: Console.Write("1"); break;
@@ -205,7 +197,7 @@ namespace CGO_ThucHanh1
                                 default : Console.Write("$"); break;
                             }
                         }
-                    else if( j == headX  && i == headY) //đầu con rắn
+                    else if( j == headX  && i == headY)
                         Console.Write("e");
                     else
                     {
@@ -214,22 +206,19 @@ namespace CGO_ThucHanh1
                         {
                             if(TailX[k]== j && TailY[k] == i)
                             {
-                                Console.Write("~");  //thân con rắn
+                                Console.Write("~");
                                 isprinted = true;
                             }
                         }
-                        if (!isprinted) Console.Write(" "); //vị trí còn lại
+                        if (!isprinted) Console.Write(" ");
                     }
                 }
                 Console.WriteLine();
             }
-            //Hiển thị panel thông tin điểm phía dưới khung viền
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Your score: "+ score);  
             Console.WriteLine("Top score: " + topScore);       
         }
-
-        //Xử lý khi thua
         void Lose() {
             Console.Clear();
             if(score > topScore) topScore = score;
@@ -253,13 +242,13 @@ namespace CGO_ThucHanh1
 
         static void Main(string[] args)
         {
-            SnakeGameNe snakegame = new SnakeGameNe(); //game ko xac dinh diem dung
+            SnakeGameNe snakegame = new SnakeGameNe();
             snakegame.ShowBanner();
             while (true)
             {
                 snakegame.Setup();
                 snakegame.Update();
-                Console.Clear(); //Xoa man hinh hien thi
+                Console.Clear();
             }
         }
     }
