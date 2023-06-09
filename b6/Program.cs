@@ -39,6 +39,7 @@ namespace CGO_ThucHanh1
                 Console.Clear();
                 Environment.Exit(0);
             }
+            Console.Clear();
         }
         
         //Cài đặt thông số ban đầu
